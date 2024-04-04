@@ -1,6 +1,11 @@
-# Use the official httpd image as the base image
+# Use the httpd:2.4 base image
 FROM httpd:2.4
-# Copy all the files from the current directory into the apache httpd web root
-COPY . /usr/local/apache2/htdocs/
-# Expose port 80 (the default HTTP port)
+
+# Copy the contents of ./public-html/ to the Apache document root
+COPY ./public-html/ /usr/local/apache2/htdocs/
+
+# Expose port 80 to enable communication with the container
 EXPOSE 80
+
+# Set the default command to start Apache when the container starts
+CMD ["httpd-foreground"]
