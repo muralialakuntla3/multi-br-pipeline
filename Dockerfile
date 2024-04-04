@@ -6,9 +6,6 @@ FROM caddy:latest
 # Set the working directory
 WORKDIR /usr/share/caddy
 
-# Copy the Caddyfile into the container
-COPY Caddyfile /etc/caddy/Caddyfile
-
 # Copy the web application files into the container
 COPY . .
 
