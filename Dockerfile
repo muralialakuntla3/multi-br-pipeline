@@ -7,7 +7,7 @@ FROM caddy:latest
 WORKDIR /usr/src/app
 
 # Copy the web application files into the container
-COPY ./sample-web-app/ .
+COPY . .
 
 # Expose port 80 (HTTP) and 443 (HTTPS)
 EXPOSE 80
