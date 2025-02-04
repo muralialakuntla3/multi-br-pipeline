@@ -3,17 +3,17 @@ agent any
 stages {
     stage('CODE ANALYSIS-SONARQUBE') {
         steps {
-           sh 'echo sonar analysis completed'
+           sh 'docker build -t login .'
       }
     }
     stage('BUILD FOR ARTIFACTS') {
         steps {
-           sh 'echo build completed'
+           sh 'docker container run -dt --name login -p 82:80 login'
       }
     }
     stage('BUILD IMAGES-DOCKER') {
         steps {
-           sh 'echo docker images build and pushed to docker hub'
+           sh 'docker container ls'
       }
     }
   }
