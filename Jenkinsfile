@@ -3,12 +3,12 @@ agent any
 stages {
     stage('CODE ANALYSIS-SONARQUBE') {
         steps {
-           sh 'echo sonar analysis completed'
+           sh 'docker build -t ecomm .'
       }
     }
     stage('BUILD FOR ARTIFACTS') {
         steps {
-           sh 'echo build completed'
+           sh 'docker container run -dt --name ecomm -p 83:80 ecomm'
       }
     }
     stage('BUILD IMAGES-DOCKER') {
