@@ -5,6 +5,12 @@ agent {
     }
 }
 stages {
+    stage('Clean Up') {
+        steps {
+           sh 'docker container rm -f food'
+           sh 'docker image rm food'
+      }
+    }
     stage('docker build') {
         steps {
            sh 'docker build -t food .'
