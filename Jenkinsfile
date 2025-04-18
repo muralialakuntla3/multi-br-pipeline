@@ -5,6 +5,12 @@ agent {
     }
 } 
 stages {
+    stage('Clean Up') {
+        steps {
+           sh 'docker container rm -f ecomm'
+           sh 'docker image rm ecomm'
+      }
+    }
     stage('Build') {
         steps {
            sh 'docker build -t ecomm .'
@@ -17,7 +23,7 @@ stages {
     }
     stage('Check') {
         steps {
-           sh 'Docker container ls'
+           sh 'docker container ls'
       }
     }
   }
