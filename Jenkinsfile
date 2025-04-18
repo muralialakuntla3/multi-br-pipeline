@@ -1,19 +1,23 @@
 pipeline {
-agent any 
+agent {
+    node {
+        label 'slave'
+    }
+} 
 stages {
-    stage('CODE ANALYSIS-SONARQUBE') {
+    stage('Build') {
         steps {
            sh 'docker build -t ecomm .'
       }
     }
-    stage('BUILD FOR ARTIFACTS') {
+    stage('Deploy') {
         steps {
            sh 'docker container run -dt --name ecomm -p 83:80 ecomm'
       }
     }
-    stage('BUILD IMAGES-DOCKER') {
+    stage('Check') {
         steps {
-           sh 'echo docker images build and pushed to docker hub'
+           sh 'Docker container ls'
       }
     }
   }
