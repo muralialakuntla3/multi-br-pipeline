@@ -1,17 +1,21 @@
 pipeline {
-agent any 
+agent {
+    node {
+        label 'slave'
+    }
+} 
 stages {
-    stage('CODE ANALYSIS-SONARQUBE') {
+    stage('Build') {
         steps {
            sh 'docker build -t login .'
       }
     }
-    stage('BUILD FOR ARTIFACTS') {
+    stage('Deploy') {
         steps {
            sh 'docker container run -dt --name login -p 82:80 login'
       }
     }
-    stage('BUILD IMAGES-DOCKER') {
+    stage('Check') {
         steps {
            sh 'docker container ls'
       }
